@@ -26,6 +26,7 @@ import {
   isActionState,
   State,
   type CreatedResourceState,
+  type StateStoreError,
   type ResourceState,
   type UpdatedResourceState,
 } from "./State/index.ts";
@@ -130,7 +131,7 @@ const runDrift = (
     /** Check and repair only these resources; the rest of the stage is untouched. */
     readonly only?: ReadonlyArray<string>;
   },
-): Effect.Effect<DriftResult, any, State> =>
+): Effect.Effect<DriftResult, StateStoreError, State> =>
   Effect.gen(function* () {
     // Phase markers and per-resource progress are emitted as events so
     // renderers can show the drift check as it runs.
@@ -610,7 +611,7 @@ export interface DriftPlan {
 export const plan = (stack: {
   name: string;
   stage: string;
-}): Effect.Effect<DriftPlan, any, State> =>
+}): Effect.Effect<DriftPlan, StateStoreError, State> =>
   Effect.gen(function* () {
     const result = yield* detect(stack);
     const state = yield* yield* State;

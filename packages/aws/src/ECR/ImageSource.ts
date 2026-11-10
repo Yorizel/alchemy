@@ -1,8 +1,4 @@
-import {
-  makeContainerImageSource,
-  type ImageRegistryTarget,
-  type ImageSourceLike,
-} from "@alchemy.run/docker/ImageSource";
+import { makeContainerImageSource, type ImageSourceLike } from "@alchemy.run/docker/ImageSource";
 import * as ecr from "@distilled.cloud/aws/ecr";
 import * as Effect from "effect/Effect";
 import { roleHostBundle } from "../AWSBindings.ts";
@@ -184,7 +180,7 @@ export const makeImageSource = Effect.gen(function* () {
           : ensureRepository({ repositoryName: options.repositoryName, tags: options.tags }),
       hasTag: hasTag(options.repositoryName),
       credentials: getEcrRegistryCredentials,
-    } satisfies ImageRegistryTarget<any>;
+    };
     const resolved = yield* images.resolve(
       { ...options, source: onRoleHost(options.source) },
       target,

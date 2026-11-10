@@ -70,8 +70,8 @@ export const D1 = <TRelations extends AnyRelations = EmptyRelations, E = never, 
           EffectSQLiteD1Database<TRelations> & {
             $client: D1Client.D1Client;
           },
-          any,
-          any
+          Effect.Error<typeof db>,
+          Effect.Services<typeof db>
         >,
       ),
   );

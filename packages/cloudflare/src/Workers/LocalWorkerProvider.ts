@@ -40,6 +40,7 @@ import * as PlatformFileSystem from "effect/FileSystem";
 import * as MutableHashMap from "effect/MutableHashMap";
 import * as Option from "effect/Option";
 import * as Path from "effect/Path";
+import type { PlatformError } from "effect/PlatformError";
 import type * as ChildProcessSpawner from "effect/process/ChildProcessSpawner";
 import * as Result from "effect/Result";
 import * as Scope from "effect/Scope";
@@ -723,7 +724,7 @@ export const LocalWorkerProvider = () =>
 
           const fingerprint = Effect.gen(function* () {
             const hashes: string[] = [];
-            const walk = (dir: string): Effect.Effect<void, any> =>
+            const walk = (dir: string): Effect.Effect<void, PlatformError> =>
               Effect.gen(function* () {
                 const entries = yield* fs.readDirectory(dir);
                 for (const entry of entries.sort()) {

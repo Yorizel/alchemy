@@ -79,8 +79,8 @@ export const MySQL = <TRelations extends AnyRelations = EmptyRelations, E = neve
           EffectMysql2Database<TRelations> & {
             $client: MysqlClient.MysqlClient;
           },
-          any,
-          any
+          Effect.Error<typeof db>,
+          Effect.Services<typeof db>
         >,
       ),
   );

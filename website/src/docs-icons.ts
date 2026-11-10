@@ -131,7 +131,6 @@ const GROUP_ICONS: Record<string, string | undefined> = {
   Objects: l("file-code"),
   Frontends: l("monitor-smartphone"),
   Security: l("shield-check"),
-  Sandboxes: l("box"),
   "Consistency patterns": l("git-merge"),
   Hosting: l("server"),
   Clients: l("plug"),
